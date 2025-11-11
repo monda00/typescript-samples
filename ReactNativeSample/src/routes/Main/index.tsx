@@ -11,8 +11,17 @@ import {
   STATISTICS,
   USER_INFO,
   INPUT,
+  SIGN_UP,
+  SIGN_IN,
 } from '../../constants/path';
-import { Initial, Loading, ChooseLogin, Input } from '../../components/pages';
+import {
+  Initial,
+  Loading,
+  ChooseLogin,
+  Input,
+  SignUp,
+  SignIn,
+} from '../../components/pages';
 import Home from './Home';
 import Statistics from './Statistics';
 import UserInfo from './UserInfo';
@@ -27,6 +36,7 @@ const Tab = createBottomTabNavigator();
 const HomeDrawer = createDrawerNavigator();
 const StatisticsDrawer = createDrawerNavigator();
 const ModalStack = createStackNavigator<RootStackParamList>();
+const ChooseLoginStack = createStackNavigator();
 
 const forFade = ({ current }: StackCardInterpolationProps) => ({
   cardStyle: {
@@ -81,10 +91,22 @@ function TabWithModalRoutes() {
   );
 }
 
+function ChooseLoginNavigator() {
+  return (
+    <ChooseLoginStack.Navigator initialRouteName={CHOOSE_LOGIN}>
+      <ChooseLoginStack.Screen name={CHOOSE_LOGIN} component={ChooseLogin} />
+      <ChooseLoginStack.Screen name={SIGN_UP} component={SignUp} />
+      <ChooseLoginStack.Screen name={SIGN_IN} component={SignIn} />
+    </ChooseLoginStack.Navigator>
+  );
+}
+
 function switchingAuthStatus(status: UiContext.Status) {
   switch (status) {
     case UiContext.Status.UN_AUTHORIZED:
-      return <Stack.Screen name={CHOOSE_LOGIN} component={ChooseLogin} />;
+      return (
+        <Stack.Screen name={CHOOSE_LOGIN} component={ChooseLoginNavigator} />
+      );
     case UiContext.Status.AUTHORIZED:
       return <Stack.Screen name={HOME} component={TabWithModalRoutes} />;
     case UiContext.Status.FIRST_OPEN:
