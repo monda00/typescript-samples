@@ -9,4 +9,5 @@ export type RootStackParamList = {
   LOADING: undefined;
   CHOOSE_LOGIN: undefined;
   INPUT: undefined;
+  MODAL_SCREEN: undefined;
 };

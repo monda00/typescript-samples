@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { DETAIL } from '../../../constants/path';
+import { DETAIL, INPUT } from '../../../constants/path';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../types/navigation';
@@ -23,6 +23,9 @@ export default function Home() {
       <Text>Home Page</Text>
       <TouchableOpacity onPress={() => navigate(DETAIL)}>
         <Text>Go to Detail Page</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigate(INPUT)}>
+        <Text>Open Input Modal</Text>
       </TouchableOpacity>
     </View>
   );
