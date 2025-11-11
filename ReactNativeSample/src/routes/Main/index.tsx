@@ -3,14 +3,16 @@ import {
   createStackNavigator,
   StackCardInterpolationProps,
 } from '@react-navigation/stack';
-import { INITIAL, LOADING, HOME, CHOOSE_LOGIN } from '../../constants/path';
 import {
-  Initial,
-  Loading,
-  Home,
-  ChooseLogin,
-  Statistics,
-} from '../../components/pages';
+  INITIAL,
+  LOADING,
+  HOME,
+  CHOOSE_LOGIN,
+  STATISTICS,
+} from '../../constants/path';
+import { Initial, Loading, ChooseLogin } from '../../components/pages';
+import Home from './Home';
+import Statistics from './Statistics';
 import * as UiContext from '../../contexts/ui';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -26,7 +28,7 @@ function TabRoutes() {
   return (
     <Tab.Navigator initialRouteName={HOME}>
       <Tab.Screen name={HOME} component={Home} />
-      <Tab.Screen name="Statistics" component={Statistics} />
+      <Tab.Screen name={STATISTICS} component={Statistics} />
     </Tab.Navigator>
   );
 }
